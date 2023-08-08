@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  variation: one
+  warehouse: one
+  quantity: 1
+  updated_by_user_id: 1
+
+two:
+  variation: two
+  warehouse: two
+  quantity: 1
+  updated_by_user_id: 1
