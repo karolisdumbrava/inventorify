@@ -3,5 +3,3 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 // import notifications.js
 import "./notifications"
-//= require jquery
-//= require jquery_ujs

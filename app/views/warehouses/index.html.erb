@@ -6,7 +6,7 @@
     <% @warehouses.each do |warehouse| %>
     <li class="w-full h-full m-2 flex items-center space-x-2">
         <div>
-            <%= warehouse.name %>
+            <%= link_to warehouse.name, warehouse_path(warehouse) %>
         </div>
         <%= link_to 'Edit', edit_warehouse_path(warehouse), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2" %>
         <%= button_to 'Delete', warehouse_path(warehouse), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>

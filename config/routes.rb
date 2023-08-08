@@ -1,15 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :api do
-    namespace :v1 do
-      resources :products
-      resources :warehouses
-      resources :inventories
-      resources :variations
-      resources :restock_alerts
-    end
-  end
-
   devise_for :users
 
   resources :warehouses
