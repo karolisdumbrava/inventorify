@@ -1,0 +1,24 @@
+<%= form_with model: @warehouse, local: true do |form| %>
+  <div class="container mx-auto my-5 p-5">
+
+    <div class="mb-4">
+      <%= form.label :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :address, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.text_area :address, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :capacity, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= form.number_field :capacity, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline", min: 1 %>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <%= form.submit "Create Warehouse", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+
+  </div>
+<% end %>

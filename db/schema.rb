@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_08_082944) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_08_095304) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,7 +84,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_08_082944) do
     t.bigint "manager_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "capacity", default: 1000, null: false
+    t.integer "used_space", default: 0, null: false
     t.index ["manager_id"], name: "index_warehouses_on_manager_id"
+    t.check_constraint "capacity >= 0", name: "chk_warehouses_capacity_nonnegative"
+    t.check_constraint "used_space >= 0", name: "chk_warehouses_used_space_nonnegative"
   end
 
   add_foreign_key "inventories", "users", column: "updated_by_user_id"
