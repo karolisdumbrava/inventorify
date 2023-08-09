@@ -1,0 +1,23 @@
+<h1><%= @warehouse.name %></h1>
+<p><%= @warehouse.address %></p>
+<p>Capacity: <%= @warehouse.capacity %></p>
+
+<h2>Products in this Warehouse</h2>
+<% if @warehouse.inventories.any? %>
+    <ul>
+        <% @warehouse.inventories.each do |inventory| %>
+            <li>
+                Product: <%= inventory.product.name %>
+                Quantity: <%= inventory.quantity %>
+            </li>
+        <% end %>
+    </ul>
+    <p><strong>Total Different Products:</strong> <%= @warehouse.inventories.count %></p>
+    <p><strong>Total Quantity:</strong> <%= @warehouse.inventories.sum(:quantity) %></p>
+<% else %>
+    <p>This warehouse is empty.</p>
+<% end %>
+
+<% @products.each do |product| %>
+    <%= product.name %>
+<% end %>

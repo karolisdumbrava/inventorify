@@ -1,0 +1,27 @@
+<h1> <%= @product.name %></h1>
+<p><%= @product.description %></p>
+<p><%= @product.price %></p>
+<p><%= @product.quantity %></p>
+<h2>Warehouses this product is available in: </h2>
+<p><%= @product.warehouse.name %></p>
+<p><%= @product.warehouse.address %></p>
+<p><%= @product.warehouse.capacity %></p>
+<p><%= @product.warehouse.inventories.count %></p>
+<p><%= @product.warehouse.inventories.sum(:quantity) %></p>
+
+<div>
+<p>
+    Variations count:
+    <%= @product.variations.count %>
+</p>
+<%= link_to 'View Variations', product_variations_path(@product) %>
+
+</div>
+
+
+
+<%= link_to 'Edit', edit_product_path(@product) %>
+<%= button_to 'Delete', @product, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+<%= link_to 'Back', products_path %>
+<%= link_to 'New Variation', new_product_variation_path(@product) %>
+<%# Make button to view variations %>

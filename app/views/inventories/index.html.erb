@@ -1,0 +1,27 @@
+<h1>All Inventories</h1>
+
+<%= link_to 'New Inventory', new_inventory_path %>
+
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Warehouse</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @inventories.each do |inventory| %>
+        <tr>
+            <td><%= inventory.product.name %></td>
+            <td><%= inventory.warehouse.name %></td>
+            <td><%= inventory.quantity %></td>
+            <td>
+                <%= link_to 'Edit', edit_inventory_path(inventory) %>
+                <%= button_to 'Delete', inventory, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>

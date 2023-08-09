@@ -1,0 +1,32 @@
+<h1>Variations for <%= @product.name %></h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Model</th>
+            <th>Storage</th>
+            <th>Size</th>
+            <th>Color</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @variations.each do |variation| %>
+        <tr>
+            <td><%= variation.model %></td>
+            <td><%= variation.storage %></td>
+            <td><%= variation.size %></td>
+            <td><%= variation.color %></td>
+            <td><%= variation.price %></td>
+            <td>
+                <%= link_to 'Edit', edit_product_variation_path(@product, variation) %>
+                <%= button_to 'Delete', product_variation_path(@product, variation), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+            </td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+<%# link for new variation creation %>
+
+<%= link_to 'New Variation', new_product_variation_path(@product) %>

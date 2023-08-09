@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_08_095304) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_09_130731) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_08_095304) do
     t.integer "updated_by_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_id"
     t.index ["variation_id"], name: "index_inventories_on_variation_id"
     t.index ["warehouse_id"], name: "index_inventories_on_warehouse_id"
   end
@@ -32,7 +33,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_08_095304) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity"
+    t.bigint "warehouse_id", null: false
     t.index ["user_id"], name: "index_products_on_user_id"
+    t.index ["warehouse_id"], name: "index_products_on_warehouse_id"
   end
 
   create_table "restock_alerts", force: :cascade do |t|
@@ -74,6 +78,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_08_095304) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "model"
+    t.string "storage"
+    t.string "color"
+    t.string "connectivity"
+    t.string "region"
+    t.string "voltage"
+    t.decimal "price"
+    t.integer "stock_quantity"
+    t.string "sku"
+    t.string "barcode"
+    t.bigint "image_id"
+    t.string "size"
     t.index ["product_id"], name: "index_variations_on_product_id"
     t.index ["user_id"], name: "index_variations_on_user_id"
   end
@@ -95,6 +111,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_08_095304) do
   add_foreign_key "inventories", "variations"
   add_foreign_key "inventories", "warehouses"
   add_foreign_key "products", "users"
+  add_foreign_key "products", "warehouses"
   add_foreign_key "restock_alerts", "inventories"
   add_foreign_key "restock_alerts", "users", column: "assigned_to_user_id"
   add_foreign_key "user_activity_logs", "users"

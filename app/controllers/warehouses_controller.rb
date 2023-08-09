@@ -20,6 +20,7 @@ class WarehousesController < ApplicationController
     end
   
     def show
+      @products = @warehouse.products
     end
   
     def edit
@@ -36,12 +37,16 @@ class WarehousesController < ApplicationController
     def destroy
       @warehouse.destroy
       redirect_to warehouses_path, notice: 'Warehouse was successfully destroyed.'
+    rescue ActiveRecord::RecordNotDestroyed
+      redirect_to warehouses_path, notice: 'Warehouse could not be destroyed.'
     end
   
     private
   
     def set_warehouse
       @warehouse = current_user.managed_warehouses.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+        redirect_to warehouses_path, notice: 'Warehouse not found.'
     end
   
     def warehouse_params

@@ -3,3 +3,5 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 // import notifications.js
 import "./notifications"
+// import productVariations.js
+import "./productVariations"

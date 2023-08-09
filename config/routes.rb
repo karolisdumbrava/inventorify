@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :warehouses
+  resources :products do
+    get :variation_for_product, on: :member
+    resources :variations
+  end 
+  resources :inventories
+
   # scope module: 'api/v1' do
   #   resources :warehouses, only: [:index, :new, :create, :edit, :update, :destroy, :show]
   # end
