@@ -1,7 +1,7 @@
 // Entry point for the build script in your package.json
-import "@hotwired/turbo-rails"
-import "./controllers"
+import "@hotwired/turbo-rails";
+import "./controllers";
 // import notifications.js
-import "./notifications"
+import "./notifications";
 // import productVariations.js
-import "./productVariations"
+import "./productVariations";

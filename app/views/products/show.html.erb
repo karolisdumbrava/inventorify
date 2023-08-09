@@ -2,12 +2,7 @@
 <p><%= @product.description %></p>
 <p><%= @product.price %></p>
 <p><%= @product.quantity %></p>
-<h2>Warehouses this product is available in: </h2>
-<p><%= @product.warehouse.name %></p>
-<p><%= @product.warehouse.address %></p>
-<p><%= @product.warehouse.capacity %></p>
-<p><%= @product.warehouse.inventories.count %></p>
-<p><%= @product.warehouse.inventories.sum(:quantity) %></p>
+
 
 <div>
 <p>

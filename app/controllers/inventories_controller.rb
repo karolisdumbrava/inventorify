@@ -18,9 +18,9 @@ class InventoriesController < ApplicationController
         @inventory = Inventory.new(inventory_params)
         @inventory.updated_by_user_id = current_user.id
         if @inventory.save
-            logger.debug @inventory.errors.full_messages.to_sentence
             redirect_to inventories_path, notice: 'Inventory was successfully created.'
         else
+            logger.debug @inventory.errors.full_messages.to_sentence
             render :new
         end
     end

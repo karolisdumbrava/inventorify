@@ -1,23 +1,33 @@
 <h1><%= @warehouse.name %></h1>
 <p><%= @warehouse.address %></p>
 <p>Capacity: <%= @warehouse.capacity %></p>
-
-<h2>Products in this Warehouse</h2>
+<h2>
+  <strong>
+    Products in this Warehouse:
+  </strong>
+</h2>
+<hr>
 <% if @warehouse.inventories.any? %>
-    <ul>
-        <% @warehouse.inventories.each do |inventory| %>
-            <li>
-                Product: <%= inventory.product.name %>
-                Quantity: <%= inventory.quantity %>
-            </li>
-        <% end %>
-    </ul>
-    <p><strong>Total Different Products:</strong> <%= @warehouse.inventories.count %></p>
-    <p><strong>Total Quantity:</strong> <%= @warehouse.inventories.sum(:quantity) %></p>
+  <ul>
+    <% @warehouse.inventories.each do |inventory| %>
+      <li>
+        Product: <%= inventory.product.name %>
+        <ul>
+          <li>
+            Variation: 
+            Size: <%= inventory.variation.model %>,
+            Color: <%= inventory.variation.color %>,
+            Price: <%= inventory.variation.price %>
+            <!-- Add any other variation attributes you want to display here -->
+          </li>
+        </ul>
+        Quantity: <%= inventory.quantity %>
+        <hr>
+      </li>
+    <% end %>
+  </ul>
+  <p><strong>Total Products in this inventory:</strong> <%= @warehouse.inventories.count %></p>
+  <p><strong>Total Quantity:</strong> <%= @warehouse.inventories.sum(:quantity) %></p>
 <% else %>
-    <p>This warehouse is empty.</p>
-<% end %>
-
-<% @products.each do |product| %>
-    <%= product.name %>
+  <p>This warehouse is empty.</p>
 <% end %>

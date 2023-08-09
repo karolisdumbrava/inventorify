@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_09_130731) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_09_175333) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,9 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_09_130731) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity"
-    t.bigint "warehouse_id", null: false
     t.index ["user_id"], name: "index_products_on_user_id"
-    t.index ["warehouse_id"], name: "index_products_on_warehouse_id"
   end
 
   create_table "restock_alerts", force: :cascade do |t|
@@ -111,7 +109,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_09_130731) do
   add_foreign_key "inventories", "variations"
   add_foreign_key "inventories", "warehouses"
   add_foreign_key "products", "users"
-  add_foreign_key "products", "warehouses"
   add_foreign_key "restock_alerts", "inventories"
   add_foreign_key "restock_alerts", "users", column: "assigned_to_user_id"
   add_foreign_key "user_activity_logs", "users"

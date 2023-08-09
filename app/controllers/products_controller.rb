@@ -38,7 +38,6 @@ class ProductsController < ApplicationController
         redirect_to products_path, notice: 'Product was successfully destroyed.'
     rescue ActiveRecord::RecordNotDestroyed
         redirect_to products_path, notice: 'Product could not be destroyed.'
-
     end
 
     def variation_for_product
@@ -58,6 +57,6 @@ class ProductsController < ApplicationController
         end
 
         def product_params
-            params.require(:product).permit(:name, :description, :quantity, :warehouse_id)
+            params.require(:product).permit(:name, :description)
         end
 end
