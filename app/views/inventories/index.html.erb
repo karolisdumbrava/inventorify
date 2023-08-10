@@ -1,27 +1,43 @@
-<h1>All Inventories</h1>
+<div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+      <div class="max-w-md mx-auto">
 
-<%= link_to 'New Inventory', new_inventory_path %>
+        <!-- Heading -->
+        <h1 class="text-3xl font-semibold mb-4">All Inventories</h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>Product</th>
-            <th>Warehouse</th>
-            <th>Quantity</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @inventories.each do |inventory| %>
-        <tr>
-            <td><%= inventory.product.name %></td>
-            <td><%= inventory.warehouse.name %></td>
-            <td><%= inventory.quantity %></td>
-            <td>
-                <%= link_to 'Edit', edit_inventory_path(inventory) %>
-                <%= button_to 'Delete', inventory, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
-            </td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
+        <!-- New Inventory Link -->
+        <div class="mb-4">
+          <%= link_to 'New Inventory', new_inventory_path, class: "px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none focus:shadow-outline" %>
+        </div>
+
+        <!-- Inventories Table -->
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Warehouse</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <% @inventories.each do |inventory| %>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap"><%= inventory.product.name %></td>
+                <td class="px-6 py-4 whitespace-nowrap"><%= inventory.warehouse.name %></td>
+                <td class="px-6 py-4 whitespace-nowrap"><%= inventory.quantity %></td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <%= link_to 'Edit', edit_inventory_path(inventory), class: "text-blue-500 hover:underline mr-4" %>
+                  <%= button_to 'Delete', inventory, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "text-red-500 hover:underline" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,32 +1,46 @@
-<h1>Variations for <%= @product.name %></h1>
+<div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+  <div class="relative py-3 sm:max-w-4xl sm:mx-auto">
+    <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+      <div class="mx-auto">
+        <!-- Heading -->
+        <h1 class="text-3xl font-semibold mb-4">Variations for <%= @product.name %></h1>
 
-<table>
-    <thead>
-        <tr>
-            <th>Model</th>
-            <th>Storage</th>
-            <th>Size</th>
-            <th>Color</th>
-            <th>Price</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @variations.each do |variation| %>
-        <tr>
-            <td><%= variation.model %></td>
-            <td><%= variation.storage %></td>
-            <td><%= variation.size %></td>
-            <td><%= variation.color %></td>
-            <td><%= variation.price %></td>
-            <td>
-                <%= link_to 'Edit', edit_product_variation_path(@product, variation) %>
-                <%= button_to 'Delete', product_variation_path(@product, variation), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
-            </td>
-        </tr>
-        <% end %>
-    </tbody>
-</table>
-<%# link for new variation creation %>
+        <!-- Variations Table -->
+            <table class="min-w-full divide-y divide-gray-200 mb-6">
+            <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Model</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Storage</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Size</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Color</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <% @variations.each do |variation| %>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap"><%= variation.model %></td>
+                <td class="px-6 py-4 whitespace-nowrap"><%= variation.storage %></td>
+                <td class="px-6 py-4 whitespace-nowrap"><%= variation.size %></td>
+                <td class="px-6 py-4 whitespace-nowrap"><%= variation.color %></td>
+                <td class="px-6 py-4 whitespace-nowrap"><%= variation.price %></td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <%= link_to 'Edit', edit_product_variation_path(@product, variation), class: "text-blue-500 hover:underline mr-4" %>
+                  <%= button_to 'Delete', product_variation_path(@product, variation), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "text-red-500 hover:underline" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
 
-<%= link_to 'New Variation', new_product_variation_path(@product) %>
+        <!-- New Variation Link -->
+        <div class="mt-4">
+          <%= link_to 'New Variation', new_product_variation_path(@product), class: "px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none focus:shadow-outline" %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

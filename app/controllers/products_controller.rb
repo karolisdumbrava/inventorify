@@ -3,8 +3,17 @@ class ProductsController < ApplicationController
     before_action :set_product, only: [:show, :edit, :update, :destroy]
 
     def index
-        @products = current_user.products
+        if params[:query].present?
+            @products = current_user.products.search_by_name(params[:query])
+            respond_to do |format|
+                format.html # regular ERB rendering
+                format.json { render json: @products }
+            end
+        else
+            @products = current_user.products
+        end
     end
+    
     
     def show
     end

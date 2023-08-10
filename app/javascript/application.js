@@ -5,3 +5,6 @@ import "./controllers";
 import "./notifications";
 // import productVariations.js
 import "./productVariations";
+
+// import searchResults.js
+import "./searchResults";

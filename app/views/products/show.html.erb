@@ -1,22 +1,29 @@
-<h1> <%= @product.name %></h1>
-<p><%= @product.description %></p>
-<p><%= @product.price %></p>
-<p><%= @product.quantity %></p>
-
-
-<div>
-<p>
-    Variations count:
-    <%= @product.variations.count %>
-</p>
-<%= link_to 'View Variations', product_variations_path(@product) %>
-
+<div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+      <div class="max-w-md mx-auto">
+        <h1 class="text-2xl font-semibold mb-4">
+          Name: <%= @product.name %>
+        </h1>
+        <div class="mb-4">
+          <p class="text-lg font-light">
+            Description: <%= @product.description %>
+          </p>
+        </div>
+        <div class="mb-4">
+          <p class="text-lg font-light">
+            Variations count: <%= @product.variations.count %>
+          </p>
+          <%= link_to 'View Variations', product_variations_path(@product), class: "text-blue-500 hover:underline" %>
+        </div>
+        <div class="flex space-x-4">
+          <%= link_to 'Edit', edit_product_path(@product), class: "px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" %>
+          <%= button_to 'Delete', @product, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600" %>
+          <%= link_to 'Back', products_path, class: "px-4 py-2 bg-gray-300 text-black rounded hover:bg-gray-400" %>
+          <%= link_to 'New Variation', new_product_variation_path(@product), class: "px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600" %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-
-<%= link_to 'Edit', edit_product_path(@product) %>
-<%= button_to 'Delete', @product, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
-<%= link_to 'Back', products_path %>
-<%= link_to 'New Variation', new_product_variation_path(@product) %>
-<%# Make button to view variations %>

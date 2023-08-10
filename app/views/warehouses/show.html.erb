@@ -1,33 +1,46 @@
-<h1><%= @warehouse.name %></h1>
-<p><%= @warehouse.address %></p>
-<p>Capacity: <%= @warehouse.capacity %></p>
-<h2>
-  <strong>
-    Products in this Warehouse:
-  </strong>
-</h2>
-<hr>
-<% if @warehouse.inventories.any? %>
-  <ul>
-    <% @warehouse.inventories.each do |inventory| %>
-      <li>
-        Product: <%= inventory.product.name %>
-        <ul>
-          <li>
-            Variation: 
-            Size: <%= inventory.variation.model %>,
-            Color: <%= inventory.variation.color %>,
-            Price: <%= inventory.variation.price %>
-            <!-- Add any other variation attributes you want to display here -->
-          </li>
-        </ul>
-        Quantity: <%= inventory.quantity %>
-        <hr>
-      </li>
-    <% end %>
-  </ul>
-  <p><strong>Total Products in this inventory:</strong> <%= @warehouse.inventories.count %></p>
-  <p><strong>Total Quantity:</strong> <%= @warehouse.inventories.sum(:quantity) %></p>
-<% else %>
-  <p>This warehouse is empty.</p>
-<% end %>
+<div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+      <div class="max-w-md mx-auto">
+
+        <!-- Warehouse Details -->
+        <h1 class="text-3xl font-semibold mb-4"><%= @warehouse.name %></h1>
+        <p class="mb-2"><%= @warehouse.address %></p>
+        <p class="mb-6">Capacity: <%= @warehouse.capacity %></p>
+
+        <!-- Products in Warehouse -->
+        <h2 class="text-2xl font-semibold mb-4">
+          Products in this Warehouse:
+        </h2>
+
+        <% if @warehouse.inventories.any? %>
+          <div class="space-y-6">
+            <% @warehouse.inventories.each do |inventory| %>
+              <div class="border p-4 rounded-md">
+                <h3 class="text-xl font-medium mb-2">Product: <%= inventory.product.name %></h3>
+                <div class="pl-4">
+                  <p>Variation:</p>
+                  <ul class="list-disc pl-5">
+                    <li>Size: <%= inventory.variation.model %></li>
+                    <li>Color: <%= inventory.variation.color %></li>
+                    <li>Price: <%= inventory.variation.price %></li>
+                    <!-- Add any other variation attributes you want to display here -->
+                  </ul>
+                  <p class="mt-2">Quantity: <%= inventory.quantity %></p>
+                </div>
+              </div>
+            <% end %>
+            <div>
+              <p><strong>Total Products in this inventory:</strong> <%= @warehouse.inventories.count %></p>
+              <p><strong>Total Quantity:</strong> <%= @warehouse.inventories.sum(:quantity) %></p>
+            </div>
+          </div>
+        <% else %>
+          <p class="mt-4 text-gray-500">This warehouse is empty.</p>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

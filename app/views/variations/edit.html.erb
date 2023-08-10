@@ -1,4 +1,3 @@
-<h1>Edit variation</h1>
 <%= render 'form', variation: @variation %>
 
 <%= link_to 'Delete' , product_variation_path(@product, @variation), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>

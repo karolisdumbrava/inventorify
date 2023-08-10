@@ -1,2 +1,41 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+
+      <!-- Welcome Message -->
+      <h1 class="text-3xl font-semibold mb-4">Welcome to the Warehouse App!</h1>
+      <p class="mb-8">
+        This is the home page for the Warehouse App. You can use this app to manage your warehouses and inventories.
+      </p>
+
+      <% if user_signed_in? %>
+        <p class="text-lg mb-4">Hello, <%= current_user.email || "User" %>! What would you like to do today?</p>
+        
+        <!-- User Actions -->
+        <ul class="mb-4 space-y-2">
+          <li><%= link_to "View your profile", edit_user_registration_path, class: "text-blue-500 hover:underline" %></li>
+          <li><%= link_to "Create a new warehouse", new_warehouse_path, class: "text-blue-500 hover:underline" %></li>
+          <li><%= link_to "View all warehouses", warehouses_path, class: "text-blue-500 hover:underline" %></li>
+          <!-- Add any other navigation links specific to signed-in users here -->
+        </ul>
+
+        <!-- Logout -->
+        <div class="mt-4 flex">
+          Or, if you wish to log out, 
+          <%= button_to "sign out", destroy_user_session_path, method: :delete, class: "text-red-500 hover:underline ml-1" %>
+        </div>
+
+      <% else %>
+        <!-- Log in or Sign Up -->
+        <p class="text-lg">
+          To get started, 
+          <%= link_to "sign up", new_user_registration_path, class: "text-blue-500 hover:underline" %> 
+          or 
+          <%= link_to "log in", new_user_session_path, class: "text-blue-500 hover:underline" %>
+        </p>
+      <% end %>
+      
+    </div>
+  </div>
+</div>
