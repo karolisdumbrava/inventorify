@@ -24,21 +24,18 @@
           <!-- Variation Field -->
           <div>
             <%= form.label :variation_id, class: "block text-sm font-medium text-gray-700" %>
-<% selected_product = inventory.product || Product.new %>
-<% variations_for_product = selected_product.variations %>
-
-<% placeholder_text = if !inventory.product
+            <% selected_product = inventory.product || Product.new %>
+            <% variations_for_product = selected_product.variations %>
+            <% placeholder_text = if !inventory.product
                         "Select a product first"
                       elsif variations_for_product.empty?
                         "No variations available"
                       end %>
-
-<%= form.collection_select :variation_id, 
+            <%= form.collection_select :variation_id, 
                            variations_for_product, 
                            :id, :model, 
                            { include_blank: placeholder_text }, 
                            class: "mt-1 p-2 w-full border rounded-md" %>
-
           </div>
           <!-- Warehouse Field -->
           <div>

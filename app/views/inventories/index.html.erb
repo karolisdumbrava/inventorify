@@ -3,15 +3,12 @@
     <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
     <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
       <div class="max-w-full mx-auto overflow-x-auto"> <!-- Added overflow-x-auto here -->
-
         <!-- Heading -->
         <h1 class="text-3xl font-semibold mb-4">All Inventories</h1>
-
         <!-- New Inventory Link -->
         <div class="mb-4">
           <%= link_to 'New Inventory', new_inventory_path, class: "px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none focus:shadow-outline" %>
         </div>
-
         <!-- Inventories Table -->
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">
@@ -25,26 +22,24 @@
           <tbody class="bg-white divide-y divide-gray-200">
             <% @inventories.each do |inventory| %>
               <tr>
-         <td class="px-6 py-4 whitespace-nowrap">
-  <%= inventory.product.name %>
-<% if inventory.variation %>
-  <span class="text-gray-500">(<%= [inventory.variation.model, inventory.variation.storage, inventory.variation.color].compact.join(", ") %>)</span>
-<% end %>
-
-</td>
-
-
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <%= inventory.product.name %>
+                  <% if inventory.variation %>
+                    <span class="text-gray-500">(<%= [inventory.variation.model, inventory.variation.storage, inventory.variation.color].compact.join(", ") %>)</span>
+                  <% end %>
+                </td>
                 <td class="px-6 py-4 whitespace-nowrap"><%= inventory.warehouse.name %></td>
                 <td class="px-6 py-4 whitespace-nowrap"><%= inventory.quantity %></td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <%= link_to 'Edit', edit_inventory_path(inventory), class: "text-blue-500 hover:underline mr-4" %>
+                  <%# Add transaction %>
+                  <%= link_to 'Transaction', inventory_transactions_path(inventory), class: "text-green-500 hover:underline mr-4" %>
                   <%= button_to 'Delete', inventory, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "text-red-500 hover:underline" %>
                 </td>
               </tr>
             <% end %>
           </tbody>
         </table>
-
       </div>
     </div>
   </div>

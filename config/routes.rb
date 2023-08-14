@@ -7,7 +7,11 @@ Rails.application.routes.draw do
     get :variation_for_product, on: :member
     resources :variations
   end 
-  resources :inventories
+  resources :inventories do
+    resources :transactions, only: [:index, :new, :create ], controller: 'inventory_transactions'
+  end
+  
+
 
   # scope module: 'api/v1' do
   #   resources :warehouses, only: [:index, :new, :create, :edit, :update, :destroy, :show]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_14_152411) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_14_182735) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_152411) do
   create_table "inventory_transactions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "transaction_type"
+    t.integer "quantity"
+    t.integer "user_id"
+    t.integer "inventory_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -113,6 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_152411) do
   add_foreign_key "inventories", "users", column: "updated_by_user_id"
   add_foreign_key "inventories", "variations"
   add_foreign_key "inventories", "warehouses"
+  add_foreign_key "inventory_transactions", "inventories"
+  add_foreign_key "inventory_transactions", "users"
   add_foreign_key "products", "users"
   add_foreign_key "restock_alerts", "inventories"
   add_foreign_key "restock_alerts", "users", column: "assigned_to_user_id"
