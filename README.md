@@ -2,6 +2,8 @@
 
 A Ruby on Rails application designed to manage products, product variations, and inventories within different warehouses.
 
+App can be reached https://inventorify.fly.dev/
+
 ## Features:
 
 - **User Authentication:** Secure login and registration system using Devise.
