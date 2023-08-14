@@ -1,8 +1,8 @@
 <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+  <div class="relative py-3 sm:max-w-2xl sm:mx-auto"> <!-- Increased max width here -->
     <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
     <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-      <div class="max-w-md mx-auto">
+      <div class="max-w-full mx-auto overflow-x-auto"> <!-- Added overflow-x-auto here -->
 
         <!-- Heading -->
         <h1 class="text-3xl font-semibold mb-4">All Inventories</h1>
@@ -25,7 +25,15 @@
           <tbody class="bg-white divide-y divide-gray-200">
             <% @inventories.each do |inventory| %>
               <tr>
-                <td class="px-6 py-4 whitespace-nowrap"><%= inventory.product.name %></td>
+         <td class="px-6 py-4 whitespace-nowrap">
+  <%= inventory.product.name %>
+<% if inventory.variation %>
+  <span class="text-gray-500">(<%= [inventory.variation.model, inventory.variation.storage, inventory.variation.color].compact.join(", ") %>)</span>
+<% end %>
+
+</td>
+
+
                 <td class="px-6 py-4 whitespace-nowrap"><%= inventory.warehouse.name %></td>
                 <td class="px-6 py-4 whitespace-nowrap"><%= inventory.quantity %></td>
                 <td class="px-6 py-4 whitespace-nowrap">

@@ -8,3 +8,4 @@ import "./productVariations";
 
 // import searchResults.js
 import "./searchResults";
+//= require turbolinks

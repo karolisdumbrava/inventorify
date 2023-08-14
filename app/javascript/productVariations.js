@@ -1,14 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   const body = document.body;
+  const productDropdown = document.querySelector('[name="inventory[product_id]"]');
+  const variationDropdown = document.querySelector('[name="inventory[variation_id]"]');
 
-  body.addEventListener("change", function (event) {
-    if (event.target.matches('[name="inventory[product_id]"]')) {
-      const selectedProductId = event.target.value;
+  if (productDropdown && variationDropdown) {
+
+    function fetchVariationsForProduct(selectedProductId) {
       const url = `/products/${selectedProductId}/variation_for_product`;
-
-      const variationDropdown = document.querySelector(
-        '[name="inventory[variation_id]"]',
-      );
 
       fetch(url)
         .then((response) => response.json())
@@ -27,5 +25,15 @@ document.addEventListener("DOMContentLoaded", function () {
           });
         });
     }
-  });
+
+    productDropdown.addEventListener("change", function () {
+      const selectedProductId = productDropdown.value;
+      fetchVariationsForProduct(selectedProductId);
+    });
+
+    // If a product is pre-selected when the page loads, fetch its variations
+    if (productDropdown.value) {
+      fetchVariationsForProduct(productDropdown.value);
+    }
+  }
 });
