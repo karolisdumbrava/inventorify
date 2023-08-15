@@ -18,7 +18,7 @@ class InventoryTransactionsController < ApplicationController
     if @transaction.save
       redirect_to inventory_transactions_path(@inventory), notice: 'Transaction was successfully created.'
     else
-      flash[:error] = @transaction.errors.full_messages.join(", ")
+      flash.now[:notice] = 'Transaction was not created.'
       render :new
     end        
   end 
@@ -30,17 +30,7 @@ class InventoryTransactionsController < ApplicationController
   end
 
   def transaction_params
-    # Removed :inventory_id since we're building the transaction off the inventory
     params.require(:inventory_transaction).permit(:quantity, :transaction_type, :user_id)
   end
 
-  def adjust_inventory(transaction)
-    inventory = transaction.inventory
-    if transaction.transaction_type == 'sale'
-      inventory.current_quantity -= transaction.quantity
-    else
-      inventory.current_quantity += transaction.quantity
-    end
-    inventory.save
-  end
 end

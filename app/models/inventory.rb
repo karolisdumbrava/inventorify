@@ -6,14 +6,6 @@ class Inventory < ApplicationRecord
 
   has_many :inventory_transactions
 
-  def adjust_quantity(transaction_type, quantity)
-    case transaction_type
-    when 'sale'
-      self.current_quantity -= quantity
-    when 'restock', 'return', 'adjustment'
-      self.current_quantity += quantity
-    end
-    self.save
-  end
+  validates :quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
 end
