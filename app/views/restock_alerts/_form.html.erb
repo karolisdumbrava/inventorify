@@ -1,0 +1,51 @@
+<div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+      <div class="max-w-md mx-auto">
+
+        <!-- Heading -->
+        <h1 class="text-3xl font-semibold mb-4">Restock Alert Form</h1>
+
+        <%= form_with(model: [@inventory, @restock_alert], local: true) do |form| %>
+          <% if @restock_alert.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@restock_alert.errors.count, "error") %> prohibited this restock_alert from being saved:</h2>
+              <ul>
+                <% @restock_alert.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <!-- Threshold Input -->
+          <div class="mb-4">
+            <%= form.label :threshold, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.number_field :threshold, class: "mt-1 p-2 w-full border rounded" %>
+          </div>
+
+          <!-- Status Input -->
+          <div class="mb-4">
+            <%= form.label :status, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.select :status, RestockAlert::STATUSES, class: "mt-1 p-2 w-full border rounded-md" %>
+          </div>
+
+
+          <!-- Assigned To Input -->
+          <div class="mb-4">
+            <%= form.label :assigned_to_user_id, class: "block text-sm font-medium text-gray-700" %>
+            <%= form.collection_select :assigned_to_user_id, User.all, :id, :email, {}, { class: "mt-1 p-2 w-full border rounded" } %>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="mt-4">
+            <%= form.submit class: "px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600" %>
+          </div>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

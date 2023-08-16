@@ -7,5 +7,5 @@ class Inventory < ApplicationRecord
   has_many :inventory_transactions
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-
+  has_one :restock_alert, dependent: :destroy
 end

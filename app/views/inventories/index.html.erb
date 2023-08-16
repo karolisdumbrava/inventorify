@@ -32,7 +32,7 @@
                 <td class="px-6 py-4 whitespace-nowrap"><%= inventory.quantity %></td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <%= link_to 'Edit', edit_inventory_path(inventory), class: "text-blue-500 hover:underline mr-4" %>
-                  <%# Add transaction %>
+                  <%= link_to 'Restock Alert', inventory_restock_alerts_path(inventory), class: "text-green-500 hover:underline mr-4" %>
                   <%= link_to 'Transaction', inventory_transactions_path(inventory), class: "text-green-500 hover:underline mr-4" %>
                   <%= button_to 'Delete', inventory, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "text-red-500 hover:underline" %>
                 </td>

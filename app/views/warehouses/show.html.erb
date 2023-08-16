@@ -32,7 +32,7 @@
               </div>
             <% end %>
             <div>
-              <p><strong>Total Products in this inventory:</strong> <%= @warehouse.inventories.count %></p>
+              <p><strong>Total Products in this warehouse:</strong> <%= @warehouse.inventories.count %></p>
               <p><strong>Total Quantity:</strong> <%= @warehouse.inventories.sum(:quantity) %></p>
             </div>
           </div>

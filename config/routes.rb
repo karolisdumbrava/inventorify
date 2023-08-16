@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'restock_alerts/new'
+  get 'restock_alerts/create'
+  get 'restock_alerts/edit'
+  get 'restock_alerts/update'
 
   devise_for :users
 
@@ -9,6 +13,7 @@ Rails.application.routes.draw do
   end 
   resources :inventories do
     resources :transactions, only: [:index, :new, :create ], controller: 'inventory_transactions'
+    resources :restock_alerts, only: [:index, :new, :create, :destroy, :edit, :update]
   end
   
 
