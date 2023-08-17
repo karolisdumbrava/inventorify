@@ -5,6 +5,7 @@ class InventoriesController < ApplicationController
 
     def index
         @inventories = Inventory.all
+        @triggered_inventories = Inventory.joins(:restock_alert).where(restock_alerts: { status: RestockAlert::TRIGGERED })
     end
 
     def show

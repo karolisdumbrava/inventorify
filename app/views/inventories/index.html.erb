@@ -9,6 +9,25 @@
         <div class="mb-4">
           <%= link_to 'New Inventory', new_inventory_path, class: "px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 focus:outline-none focus:shadow-outline" %>
         </div>
+
+        <% if @triggered_inventories.any? %>
+          <!-- Triggered Inventories -->
+          <div class="mb-4">
+            <h2 class="text-xl font-semibold mb-2">Triggered Inventories</h2>
+            <div class="border p-4 rounded-md">
+              <table class="min-w-full divide-y divide-gray-200">
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <% @triggered_inventories.each do |inventory |%>
+                    <tr>
+                      <%= inventory.product.name %> <span class="text-gray-500">(<%= [inventory.variation.model, inventory.variation.storage, inventory.variation.color].compact.join(", ") %>) </span> needs to be restocked in <%= inventory.warehouse.name %>!
+                    </tr>
+                    <%end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        <% end %>
+
         <!-- Inventories Table -->
         <table class="min-w-full divide-y divide-gray-200">
           <thead class="bg-gray-50">

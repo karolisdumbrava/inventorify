@@ -8,4 +8,14 @@ class Inventory < ApplicationRecord
 
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   has_one :restock_alert, dependent: :destroy
+  after_save :check_restock_alert
+
+  def check_restock_alert
+    if self.quantity <= self.restock_alert.threshold
+      self.restock_alert.update(status: RestockAlert::TRIGGERED)
+    elsif self.quantity > self.restock_alert.threshold
+      self.restock_alert.update(status: RestockAlert::PENDING)
+    end
+  end
+  
 end

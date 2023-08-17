@@ -8,7 +8,7 @@ class RestockAlert < ApplicationRecord
   PENDING = 'Pending'
   ACKNOWLEDGED = 'Acknowledged'
   RESOLVED = 'Resolved'
-
-  STATUSES = [PENDING, ACKNOWLEDGED, RESOLVED]
+  TRIGGERED = 'Triggered'
+  STATUSES = [PENDING, ACKNOWLEDGED, RESOLVED, TRIGGERED]
 end
 

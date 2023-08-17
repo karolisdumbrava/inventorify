@@ -14,8 +14,6 @@ class RestockAlertsController < ApplicationController
     else 
       @restock_alert = @inventory.build_restock_alert
     end
-
-    # @restock_alert = @inventory.build_restock_alert
   end
   
 
@@ -51,6 +49,7 @@ class RestockAlertsController < ApplicationController
   end
 
   private
+
   def restock_alert_params
     params.require(:restock_alert).permit(:threshold, :status, :assigned_to_user_id)
   end
