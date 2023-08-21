@@ -7,7 +7,8 @@ class VariationsController < ApplicationController
 
     def index
         @variations = @product.variations
-    end
+      end
+      
 
     def show
     end

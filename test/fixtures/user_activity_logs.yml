@@ -1,15 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  action: MyString
-  entity: MyString
-  entity_id: 1
-  timestamp: 2023-08-08 11:29:44
-
-two:
-  user: two
-  action: MyString
-  entity: MyString
-  entity_id: 1
-  timestamp: 2023-08-08 11:29:44
+user_one_add_product: {
+  user: <%= users(:one) %>,
+  action: "add_product",
+}

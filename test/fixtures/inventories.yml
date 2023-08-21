@@ -1,13 +1,17 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+inventory_one: 
+  product_id: <%= products(:product_one).id %>
+  variation_id: <%= variations(:variation_one).id %>
+  warehouse_id: <%= warehouses(:warehouse_one).id %>
+  quantity: 50
+  updated_by_user_id: <%= users(:one).id %>
+  created_at: <%= fake_time %>
+  updated_at: <%= fake_time %>
 
-one:
-  variation: one
-  warehouse: one
-  quantity: 1
-  updated_by_user_id: 1
-
-two:
-  variation: two
-  warehouse: two
-  quantity: 1
-  updated_by_user_id: 1
+inventory_two: 
+  product_id: <%= products(:product_two).id %>
+  variation_id: <%= variations(:variation_two).id %>
+  warehouse_id: <%= warehouses(:warehouse_two).id %>
+  quantity: 100
+  updated_by_user_id: <%= users(:two).id %>
+  created_at: <%= fake_time %>
+  updated_at: <%= fake_time %>

@@ -5,4 +5,9 @@ class Product < ApplicationRecord
   belongs_to :user
   has_many :variations
   has_many :inventories
+
+  validates :name, presence: true
+  validates :description, presence: true
+  validates_uniqueness_of :name, scope: :user_id, message: "should have a unique name"
+
 end

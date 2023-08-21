@@ -8,4 +8,7 @@ class User < ApplicationRecord
   has_many :assigned_restock_alerts, class_name: "RestockAlert", foreign_key: "assigned_to_user_id"
   has_many :updated_inventories, class_name: "Inventory", foreign_key: "updated_by_user_id"
   has_many :products
+
+  validates :password, presence: true, length: { minimum: 6 }
+  validates :email, presence: true, uniqueness: true
 end

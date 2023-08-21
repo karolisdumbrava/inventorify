@@ -3,28 +3,27 @@ require "test_helper"
 class ProductTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.create(email: "test@example.com", password: "password")
-    @product = @user.products.create(name: "Test Product", description: "Test Description")
+    @product = FactoryBot.create(:product)
   end
 
-  test 'product should be valid' do
-    assert @product.valid?
+  test "should be valid" do
+    assert @product.valid?, @product.errors.full_messages.join(", ")
   end
 
-  test 'name should be present' do
-    @product.name = ""
-    assert_not @product.valid?
+  test "should have a name" do
+    @product.name = nil
+    assert_not @product.valid?, "Product should not be valid without a name"
   end
 
-  test 'product should belong to user' do
-    @product.user_id = nil
-    assert_not @product.valid?
+  test "should have a description" do
+    @product.description = nil
+    assert_not @product.valid?, "Product should not be valid without a description"
+  end
+
+  test "should be unique" do
+    duplicate_product = @product.dup
+    assert_not duplicate_product.valid?, "Product should not be valid with a duplicate name"
   end
   
-  test 'description should be present' do
-    @product.description = ""
-    assert_not @product.valid?
-  end
 
-  
 end

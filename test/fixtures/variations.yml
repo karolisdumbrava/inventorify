@@ -1,11 +1,19 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+variation_one:
+  name: "sample_variation_1"
+  model: "sample_model_1"
+  color: "sample_color_1"
+  size: "sample_size_1"
+  price: 100
+  product_id: <%= products(:product_one).id %>
+  created_at: <%= fake_time %>
+  updated_at: <%= fake_time %>
 
-one:
-  name: MyString
-  product: one
-  user: one
-
-two:
-  name: MyString
-  product: two
-  user: two
+variation_two:
+  name: "sample_variation_2"
+  model: "sample_model_2"
+  color: "sample_color_2"
+  size: "sample_size_2"
+  price: 200
+  product_id: <%= products(:product_two).id %>
+  created_at: <%= fake_time %>
+  updated_at: <%= fake_time %>

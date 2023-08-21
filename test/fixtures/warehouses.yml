@@ -1,11 +1,16 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+warehouse_one: 
+  name: "sample_warehouse_1"
+  manager_id: <%= users(:one) %>
+  capacity: 100
+  used_space: 50
+  created_at: <%= fake_time %>
+  updated_at: <%= fake_time %>
 
-one:
-  name: MyString
-  address: MyText
-  manager: one
-
-two:
-  name: MyString
-  address: MyText
-  manager: two
+warehouse_two:
+  name: "sample_warehouse_2"
+  manager_id: <%= users(:two) %>
+  capacity: 200
+  used_space: 100
+  created_at: <%= fake_time %>
+  updated_at: <%= fake_time %>
+  

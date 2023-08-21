@@ -4,8 +4,25 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+one: {
+  email: <%= fake_email %>,
+  encrypted_password: <%= fake_password %>,
+  reset_password_token: <%= fake_token %>,
+  reset_password_sent_at: <%= fake_time %>,
+  remember_created_at: <%= fake_time %>,
+  created_at: <%= fake_time %>,
+  updated_at: <%= fake_time %>
+}
+
 # column: value
 #
-two: {}
+two: {
+  email: <%= fake_email %>,
+  encrypted_password: <%= fake_password %>,
+  reset_password_token: <%= fake_token %>,
+  reset_password_sent_at: <%= fake_time %>,
+  remember_created_at: <%= fake_time %>,
+  created_at: <%= fake_time %>,
+  updated_at: <%= fake_time %>
+}
 # column: value
