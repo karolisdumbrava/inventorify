@@ -4,7 +4,8 @@ FactoryBot.define do
         model { "Test Model" }
         color { "Test Color" }
         size { "Test Size" }
-        price { 1.00 }
+        storage { "Test Storage" }
+        price { 100 }
         association :product
         association :user
     end
