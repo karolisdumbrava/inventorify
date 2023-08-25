@@ -92,3 +92,5 @@ gem 'pg_search'
 gem "byebug"
 
 gem "factory_bot"
+
+gem "importmap-rails"

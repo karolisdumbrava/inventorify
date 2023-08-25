@@ -38,6 +38,7 @@ class InventoriesController < ApplicationController
     end
 
     def destroy
+        @inventory.inventory_transactions.destroy_all
         @inventory.destroy
         redirect_to inventories_path, notice: 'Inventory was successfully destroyed.'
     rescue ActiveRecord::RecordNotDestroyed

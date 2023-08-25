@@ -43,6 +43,13 @@ class ProductsController < ApplicationController
     end
 
     def destroy
+        @product.variations.each do |variation|
+            variation.inventories.each do |inventory|
+                inventory.inventory_transactions.destroy_all
+                inventory.destroy
+            end
+            variation.destroy
+        end
         @product.destroy
         redirect_to products_path, notice: 'Product was successfully destroyed.'
     rescue ActiveRecord::RecordNotDestroyed

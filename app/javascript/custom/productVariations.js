@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("turbo:load", function () {
   const body = document.body;
   const productDropdown = document.querySelector('[name="inventory[product_id]"]');
   const variationDropdown = document.querySelector('[name="inventory[variation_id]"]');
